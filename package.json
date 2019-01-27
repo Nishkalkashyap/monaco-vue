@@ -3,10 +3,12 @@
   "version": "0.2.2",
   "description": "Vue plugin for the Monaco Editor",
   "scripts": {
-    "compile": "gulp compile",
+    "compile": "mrmdir ./out && tsc -p ./src/tsconfig.json && tsc -p ./src/tsconfig.esm.json",
+    "prepublishOnly": "mrmdir ./release && npm run compile && node ./scripts/release.js && node ./scripts/bundle && mcopy ./src/monaco.d.ts ./release/monaco.d.ts",
     "watch": "gulp watch",
     "prepublish": "gulp release",
-    "install-service-next": "npm install vscode--languageservice@next -f -D && npm install vscode-languageserver-types@next -f -D",
+    "copy": "ts-node copy.ts",
+    "install-service-next": "npm install vscode --languageservice@next -f -D && npm install vscode-languageserver-types@next -f -D",
     "install-service-local": "npm install ../vscode-html-languageservice -f -D && npm install ../vscode-languageserver-node/types -f -D"
   },
   "author": "rebornix",
@@ -19,21 +21,32 @@
     "url": "https://github.com/rebornix/monaco-vue/issues"
   },
   "devDependencies": {
+    "@types/ncp": "^2.0.1",
     "event-stream": "^3.3.2",
     "gulp": "^3.9.1",
     "gulp-requirejs": "^0.4.0",
     "gulp-tsb": "^2.0.0",
-	"gulp-uglify": "^1.5.3",
-	"http-server": "^0.9.0",
+    "gulp-uglify": "^1.5.3",
+    "http-server": "^0.9.0",
     "merge-stream": "^1.0.0",
     "monaco-editor-core": "^0.10.0",
     "monaco-languages": "^0.9.0",
+    "monaco-plugin-helpers": "^1.0.2",
     "monaco-typescript": "^2.1.2",
+    "ncp": "^2.0.0",
     "object-assign": "^4.1.0",
+    "requirejs": "^2.3.6",
     "rimraf": "^2.5.2",
     "typescript": "^2.3.4",
+    "uglify-js": "^3.4.9",
+    "vscode": "^1.1.28",
+    "vscode-css-languageservice": "^2.1.4",
     "vscode-html-languageservice": "^2.0.4",
-    "vscode-languageserver-types": "^3.2.0",
-	"vscode-css-languageservice": "^2.1.4"
+    "vscode-languageserver-types": "^3.14.0",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1"
+  },
+  "dependencies": {
+    "request": "^2.79.0"
   }
 }

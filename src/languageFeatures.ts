@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import {LanguageServiceDefaultsImpl} from './monaco.contribution';
-import {VueWorker} from './vueWorker';
+import { LanguageServiceDefaultsImpl } from './monaco.contribution';
+import { VueWorker } from './vueWorker';
 
 import * as ls from 'vscode-languageserver-types';
 
@@ -48,11 +48,11 @@ export class DiagnostcsAdapter {
 		const onModelRemoved = (model: monaco.editor.IModel): void => {
 			monaco.editor.setModelMarkers(model, this._languageId, []);
 			let uriStr = model.uri.toString();
- 			let listener = this._listener[uriStr];
- 			if (listener) {
- 				listener.dispose();
- 				delete this._listener[uriStr];
- 			}
+			let listener = this._listener[uriStr];
+			if (listener) {
+				listener.dispose();
+				delete this._listener[uriStr];
+			}
 		};
 
 		this._disposables.push(monaco.editor.onDidCreateModel(onModelAdd));
@@ -223,7 +223,7 @@ function toCompletionItem(entry: ls.CompletionItem): DataCompletionItem {
 }
 
 function fromCompletionItem(entry: DataCompletionItem): ls.CompletionItem {
-	let item : ls.CompletionItem = {
+	let item: ls.CompletionItem = {
 		label: entry.label,
 		sortText: entry.sortText,
 		filterText: entry.filterText,
@@ -236,7 +236,7 @@ function fromCompletionItem(entry: DataCompletionItem): ls.CompletionItem {
 		item.insertText = entry.insertText.value;
 		item.insertTextFormat = ls.InsertTextFormat.Snippet
 	} else {
-		item.insertText = <string> entry.insertText;
+		item.insertText = <string>entry.insertText;
 	}
 	if (entry.range) {
 		item.textEdit = ls.TextEdit.replace(fromRange(entry.range), item.insertText);
@@ -266,7 +266,7 @@ export class CompletionAdapter implements monaco.languages.CompletionItemProvide
 				return;
 			}
 			let items: monaco.languages.CompletionItem[] = info.items.map(entry => {
-				let item : monaco.languages.CompletionItem = {
+				let item: monaco.languages.CompletionItem = {
 					label: entry.label,
 					insertText: entry.insertText,
 					sortText: entry.sortText,
@@ -280,7 +280,7 @@ export class CompletionAdapter implements monaco.languages.CompletionItemProvide
 					item.insertText = entry.textEdit.newText;
 				}
 				if (entry.insertTextFormat === ls.InsertTextFormat.Snippet) {
-					item.insertText = { value: <string> item.insertText };
+					item.insertText = { value: <string>item.insertText };
 				}
 				return item;
 			});
@@ -398,7 +398,7 @@ export class DocumentLinkAdapter implements monaco.languages.LinkProvider {
 function fromFormattingOptions(options: monaco.languages.FormattingOptions): ls.FormattingOptions {
 	return {
 		tabSize: options.tabSize,
-        insertSpaces: options.insertSpaces
+		insertSpaces: options.insertSpaces
 	};
 }
 
@@ -444,6 +444,7 @@ export class DocumentRangeFormattingEditProvider implements monaco.languages.Doc
  * Hook a cancellation token to a WinJS Promise
  */
 function wireCancellationToken<T>(token: CancellationToken, promise: Thenable<T>): Thenable<T> {
+	// if ((<Promise<T>>promise).cancel && token.onCancellationRequested) {
 	if ((<Promise<T>>promise).cancel) {
 		token.onCancellationRequested(() => (<Promise<T>>promise).cancel());
 	}

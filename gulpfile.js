@@ -105,8 +105,8 @@ gulp.task('release', ['clean-release','compile'], function() {
 				return false;
 			}
 		}))
-		.pipe(gulp.dest('./release/min')),
-		gulp.src('src/monaco.d.ts').pipe(gulp.dest('./release/min'))
+		.pipe(gulp.dest('./release/min'))
+		// gulp.src('src/monaco.d.ts').pipe(gulp.dest('./release/min'))
 	);
 });
 
