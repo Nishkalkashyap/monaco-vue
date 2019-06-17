@@ -22,10 +22,10 @@ const BUNDLED_FILE_HEADER = [
     ''
 ].join('\n');
 
-bundleOne('monaco.contribution', ['vs/language/vue/vueMode']),
-    bundleOne('lib/typescriptServices'),
-    bundleOne('vueMode', ['vs/language/vue/lib/typescriptServices']),
-    bundleOne('vueWorker', ['vs/language/vue/lib/typescriptServices'])
+bundleOne('monaco.contribution', ['vs/language/vue/vueMode']);
+bundleOne('lib/typescriptServices');
+bundleOne('vueMode', ['vs/language/vue/lib/typescriptServices']);
+bundleOne('vueWorker', ['vs/language/vue/lib/typescriptServices']);
 
 function bundleOne(moduleId, exclude) {
     requirejs.optimize({

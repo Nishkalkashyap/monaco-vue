@@ -1,9 +1,14 @@
 {
   "compilerOptions": {
-    "module": "amd",
+    "module": "umd",
     "moduleResolution": "node",
     "outDir": "../out",
     "target": "es2016",
-    "allowJs": true
+    "allowJs": true,
+    "lib": [
+      "es2016",
+      "dom",
+      "es5"
+    ]
   }
 }

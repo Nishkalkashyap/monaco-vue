@@ -1,9 +1,10 @@
 {
-  "name": "monaco-vue",
+  "name": "monaco-vue-quarkjs",
   "version": "0.2.2",
   "description": "Vue plugin for the Monaco Editor",
   "scripts": {
-    "compile": "mrmdir ./out && tsc -p ./src/tsconfig.json && tsc -p ./src/tsconfig.esm.json",
+    "compile": "gulp compile",
+    "bundle": "node bundle",
     "prepublishOnly": "mrmdir ./release && npm run compile && node ./scripts/release.js && node ./scripts/bundle && mcopy ./src/monaco.d.ts ./release/monaco.d.ts",
     "watch": "gulp watch",
     "prepublish": "gulp release",
@@ -29,6 +30,7 @@
     "gulp-uglify": "^1.5.3",
     "http-server": "^0.9.0",
     "merge-stream": "^1.0.0",
+    "monaco-editor": "^0.15.6",
     "monaco-editor-core": "^0.10.0",
     "monaco-languages": "^0.9.0",
     "monaco-plugin-helpers": "^1.0.2",
@@ -48,5 +50,8 @@
   },
   "dependencies": {
     "request": "^2.79.0"
-  }
+  },
+  "files": [
+    "out/"
+  ]
 }

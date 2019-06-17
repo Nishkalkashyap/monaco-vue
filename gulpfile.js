@@ -77,7 +77,8 @@ gulp.task('release', ['clean-release','compile'], function() {
             bundleOne('monaco.contribution', ['vs/language/vue/vueMode']),
             bundleOne('lib/typescriptServices'),
 			bundleOne('vueMode', ['vs/language/vue/lib/typescriptServices']),
-			bundleOne('vueWorker', ['vs/language/vue/lib/typescriptServices'])
+			bundleOne('vueWorker', ['vs/language/vue/lib/typescriptServices']),
+            bundleOne('vue.worker'),
 			// bundleOne('htmlMode'),
 			// bundleOne('htmlWorker')
 		)

@@ -444,8 +444,8 @@ export class DocumentRangeFormattingEditProvider implements monaco.languages.Doc
  * Hook a cancellation token to a WinJS Promise
  */
 function wireCancellationToken<T>(token: CancellationToken, promise: Thenable<T>): Thenable<T> {
-	// if ((<Promise<T>>promise).cancel && token.onCancellationRequested) {
-	if ((<Promise<T>>promise).cancel) {
+	if ((<Promise<T>>promise).cancel && token.onCancellationRequested) {
+	// if ((<Promise<T>>promise).cancel) {
 		token.onCancellationRequested(() => (<Promise<T>>promise).cancel());
 	}
 	return promise;
