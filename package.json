@@ -1,11 +1,12 @@
 {
-  "name": "monaco-vue-quarkjs",
+  "name": "@quarkjs/monaco-vue",
   "version": "0.2.2",
+  "private": false,
   "description": "Vue plugin for the Monaco Editor",
   "scripts": {
     "compile": "gulp compile",
     "bundle": "node bundle",
-    "prepublishOnly": "mrmdir ./release && npm run compile && node ./scripts/release.js && node ./scripts/bundle && mcopy ./src/monaco.d.ts ./release/monaco.d.ts",
+    "prepublishOnlyyy": "mrmdir ./release && npm run compile && node ./scripts/release.js && node ./scripts/bundle && mcopy ./src/monaco.d.ts ./release/monaco.d.ts",
     "watch": "gulp watch",
     "prepublish": "gulp release",
     "copy": "ts-node copy.ts",
